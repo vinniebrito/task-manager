@@ -1,1 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Fascinate+Inline&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fascinate+Inline&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap");
 @import "tailwindcss";
+
+@theme {
+  /* Cores base */
+  --color-cream: #f5f3eb;
+  --color-sand: #d8d1b4;
+  --color-root: #6e4b3a;
+  --color-limewash: #a6894d;
+  --color-moss: #5e6b52;
+  --color-ash: #2b2b2b;
+
+  /* Prioridades */
+  --color-priority-low: #8a996f;
+  --color-priority-medium: #c1914a;
+  --color-priority-high: #b03a2e;
+
+  /* Toasts */
+  --color-toast-success: #4f6b57;
+  --color-toast-warning: #a6894d;
+  --color-toast-error: #b03a2e;
+  --color-toast-info: #446b6f;
+
+  /* Fontes */
+  --font-fascinante: "Fascinate Inline", system-ui;
+  --font-libre-franklin: "Libre Franklin", system-ui;
+}
+
+body {
+  @apply bg-cream text-ash font-libre-franklin;
+}

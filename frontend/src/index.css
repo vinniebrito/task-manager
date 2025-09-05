@@ -1,10 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Fascinate+Inline&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Fascinate+Inline&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap");
+
 @import "tailwindcss";
 
 @theme {
   /* Cores base */
   --color-cream: #f5f3eb;
+  --color-oat: #e7e2d0;
   --color-sand: #d8d1b4;
   --color-root: #6e4b3a;
   --color-limewash: #a6894d;
@@ -24,9 +25,8 @@
 
   /* Fontes */
   --font-fascinante: "Fascinate Inline", system-ui;
-  --font-libre-franklin: "Libre Franklin", system-ui;
 }
 
 body {
-  @apply bg-cream text-ash font-libre-franklin;
+  @apply bg-cream text-ash;
 }

@@ -1,6 +1,6 @@
 # Task Manager
 
-Gerencie tarefas com frontend React + Vite e backend NestJS, ambos rodando em containers Docker.
+Gerencie tarefas com frontend ReactJS e backend NestJS, ambos rodando em containers Docker.
 
 ## O que dá para fazer neste projeto?
 
@@ -75,3 +75,4 @@ docker-compose exec frontend npm test
   ```sh
   docker-compose down
   ```
+

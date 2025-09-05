@@ -9,11 +9,16 @@ function getErrorMessage(error: any, defaultMsg: string) {
   return defaultMsg;
 }
 
-export async function fetchTasks(search?: string) {
+export async function fetchTasks(options?: {
+  search?: string;
+  status?: "pending" | "done";
+}) {
   try {
-    const res = await axios.get(`${API_URL}/tasks`, {
-      params: search ? { search } : {},
-    });
+    const params: Record<string, string> = {};
+    if (options?.search) params.search = options.search;
+    if (options?.status) params.status = options.status;
+
+    const res = await axios.get(`${API_URL}/tasks`, { params });
     return res.data.data;
   } catch (error: any) {
     toast.error(

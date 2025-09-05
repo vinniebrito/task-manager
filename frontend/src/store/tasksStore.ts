@@ -10,19 +10,34 @@ type Task = {
 
 type TasksStore = {
   tasks: Task[];
+  total: number;
+  pending: number;
+  done: number;
   loading: boolean;
-  loadTasks: (search?: string) => Promise<void>;
+  loadTasks: (options?: {
+    search?: string;
+    status?: "pending" | "done";
+  }) => Promise<void>;
   addTask: (title: string) => Promise<void>;
   toggleDone: (id: string) => Promise<void>;
 };
 
 export const useTasksStore = create<TasksStore>((set) => ({
   tasks: [],
+  total: 0,
+  pending: 0,
+  done: 0,
   loading: false,
-  loadTasks: async (search) => {
+  loadTasks: async (options) => {
     set({ loading: true });
-    const tasks = await fetchTasks(search);
-    set({ tasks, loading: false });
+    const response = await fetchTasks(options);
+    set({
+      tasks: response.tasks,
+      total: response.total,
+      pending: response.pending,
+      done: response.done,
+      loading: false,
+    });
   },
 
   addTask: async (title) => {

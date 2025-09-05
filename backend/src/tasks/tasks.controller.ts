@@ -30,9 +30,14 @@ export class TasksController {
     required: false,
     description: 'Filtrar tarefas pelo título',
   })
+  @ApiQuery({
+    name: 'status',
+    required: false,
+    description: "Filtrar tarefas pelo status: 'pending' ou 'done'",
+  })
   @Get()
-  findAll(@Query('search') search?: string) {
-    return this.tasksService.findAll(search);
+  findAll(@Query('search') search?: string, @Query('status') status?: string) {
+    return this.tasksService.findAll(search, status);
   }
 
   @ApiOperation({ summary: 'Cria uma nova tarefa' })

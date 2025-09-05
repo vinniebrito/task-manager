@@ -13,29 +13,32 @@ describe('TasksService', () => {
   });
 
   it('should create a new task', () => {
-    const task = service.create({ title: 'Comprar pão' });
-    expect(task).toHaveProperty('id');
-    expect(task.title).toBe('Comprar pão');
-    expect(task.done).toBe(false);
+    const result = service.create({ title: 'Comprar pão' });
+    expect(result.data).toHaveProperty('id');
+    expect(result.data.title).toBe('Comprar pão');
+    expect(result.data.done).toBe(false);
+    expect(result.message).toBe('Tarefa criada com sucesso');
   });
 
   it('should list all tasks', () => {
     service.create({ title: 'Comprar leite' });
-    const tasks = service.findAll();
-    expect(tasks.length).toBeGreaterThan(0);
+    const result = service.findAll();
+    expect(result.data.length).toBeGreaterThan(0);
+    expect(result.message).toBe('Lista de tarefas retornada com sucesso');
   });
 
   it('should find a task by title', () => {
     service.create({ title: 'Comprar queijo' });
     service.create({ title: 'Comprar presunto' });
-    const filteredTasks = service.findAll('queijo');
-    expect(filteredTasks.length).toBe(1);
-    expect(filteredTasks[0].title).toBe('Comprar queijo');
+    const result = service.findAll('queijo');
+    expect(result.data.length).toBe(1);
+    expect(result.data[0].title).toBe('Comprar queijo');
   });
 
   it('should toggle the done status of a task', () => {
-    const task = service.create({ title: 'Comprar café' });
-    const doneTask = service.toggleDone(task.id);
-    expect(doneTask.done).toBe(true);
+    const created = service.create({ title: 'Comprar café' });
+    const result = service.toggleDone(created.data.id);
+    expect(result.data.done).toBe(true);
+    expect(result.message).toBe('Status da tarefa alterado com sucesso');
   });
 });

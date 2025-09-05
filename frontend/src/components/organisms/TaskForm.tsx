@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AddIcon from "../atoms/icons/Add";
 import PrimaryButton from "../atoms/buttons/PrimaryButton";
 
@@ -6,9 +6,9 @@ type TaskFormProps = {
   onAdd: (title: string) => void;
 };
 
-const TaskForm: React.FC<TaskFormProps> = ({ onAdd }) => {
-  const [title, setTitle] = React.useState("");
-  const [isFocused, setIsFocused] = React.useState(false);
+function TaskForm({ onAdd }: TaskFormProps) {
+  const [title, setTitle] = useState("");
+  const [isFocused, setIsFocused] = useState(false);
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter" && title.trim()) {
@@ -45,6 +45,6 @@ const TaskForm: React.FC<TaskFormProps> = ({ onAdd }) => {
       )}
     </div>
   );
-};
+}
 
 export default TaskForm;

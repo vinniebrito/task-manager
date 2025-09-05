@@ -7,17 +7,40 @@ import { v4 as uuidv4 } from 'uuid';
 export class TasksService {
   private tasks: Task[] = [];
 
-  findAll(search?: string): { message: string; data: Task[] } {
+  findAll(
+    search?: string,
+    status?: string,
+  ): {
+    message: string;
+    data: { tasks: Task[]; total: number; pending: number; done: number };
+  } {
     let result = this.tasks;
+
     if (search) {
       result = result.filter((task) =>
         task.title.toLowerCase().includes(search.toLowerCase()),
       );
     }
+
+    if (status === 'pending') {
+      result = result.filter((task) => !task.done);
+    } else if (status === 'done') {
+      result = result.filter((task) => task.done);
+    }
+
     const sorted = result.sort((a, b) => Number(a.done) - Number(b.done));
+    const total = this.tasks.length;
+    const pending = this.tasks.filter((t) => !t.done).length;
+    const done = this.tasks.filter((t) => t.done).length;
+
     return {
       message: 'Lista de tarefas retornada com sucesso.',
-      data: sorted,
+      data: {
+        tasks: sorted,
+        total,
+        pending,
+        done,
+      },
     };
   }
 
